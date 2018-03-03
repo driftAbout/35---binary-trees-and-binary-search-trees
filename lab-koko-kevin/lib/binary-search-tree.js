@@ -38,11 +38,10 @@ class BinarySearchTree{
     return this._find(val, treeNode[direction]);
   }
 
-
   remove(val){
     if (!this.root) return null;
     //remove root
-    if (this.root.value === val)return this._remove(val, null, null);
+    if (this.root.value === val) return this._remove(val, null, null);
     return this._findParent(val, this.root);
   }
 
@@ -54,21 +53,19 @@ class BinarySearchTree{
   }
 
   _remove(val, direction, parentNode){
-    //if parent null then target is root
-   // let targetOrigin = parentNode ? parentNode[direction] : this.root;
-    // let targetNode = parentNode[direction];
-    //let targetNode = targetOrigin;
+
     let targetNode = parentNode ? parentNode[direction] : this.root;
-    //no children
-   // if (!targetNode.left && !targetNode.right) return targetOrigin = null;
+
+    //no childern
     if (!targetNode.left && !targetNode.right) {
       if(!parentNode) return this.root = null;
-      return targetNode = null;
+      return parentNode[direction] = null;
     }
+
     //one child
     if (!targetNode.left || !targetNode.right){
       if(!parentNode) return this.root =  targetNode.right ? targetNode.right : targetNode.left;
-      return  targetNode = targetNode.right ? targetNode.right : targetNode.left;
+      return  parentNode[direction]  = targetNode.right ? targetNode.right : targetNode.left;
     }
 
     //two children
