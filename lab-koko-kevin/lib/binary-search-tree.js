@@ -23,17 +23,7 @@ class BinarySearchTree{
     if (val === treeNode.value) return null;
     let direction = val < treeNode.value ? 'left' :  'right';
     if(!treeNode[direction]) return treeNode[direction] = new TreeNode(val);
-    this._insert(val, treeNode[direction]);
-
-    // if (val < treeNode.value){
-    //   if(!treeNode.left) return treeNode.left = new TreeNode(val);
-    //   this._insert(val, treeNode.left);
-    // } 
-    // if (val > treeNode.value){
-    //   if(!treeNode.right) return treeNode.right = new TreeNode(val);
-    //   this._insert(val, treeNode.right);
-    // } 
-    
+    this._insert(val, treeNode[direction]);    
   }
 
   find(val){
@@ -46,14 +36,13 @@ class BinarySearchTree{
     if (val === treeNode.value) return treeNode.value;
     let direction = val < treeNode.value ? 'left' :  'right';
     return this._find(val, treeNode[direction]);
-    // if (val < treeNode.value) return this._find(val, treeNode.left);
-    // if (val > treeNode.value) return this._find(val, treeNode.right);
   }
 
 
   remove(val){
     if (!this.root) return null;
-    if (this.root.value === val) return this._removeNodeWithTwoChildren(this.root);
+    //remove root
+    if (this.root.value === val)return this._remove(val, null, null);
     return this._findParent(val, this.root);
   }
 
@@ -65,12 +54,21 @@ class BinarySearchTree{
   }
 
   _remove(val, direction, parentNode){
-    let targetNode = parentNode[direction];
+    //if parent null then target is root
+   // let targetOrigin = parentNode ? parentNode[direction] : this.root;
+    // let targetNode = parentNode[direction];
+    //let targetNode = targetOrigin;
+    let targetNode = parentNode ? parentNode[direction] : this.root;
     //no children
-    if (!targetNode.left && !targetNode.right) return parentNode[direction] = null;
+   // if (!targetNode.left && !targetNode.right) return targetOrigin = null;
+    if (!targetNode.left && !targetNode.right) {
+      if(!parentNode) return this.root = null;
+      return targetNode = null;
+    }
     //one child
     if (!targetNode.left || !targetNode.right){
-      return  parentNode[direction] = targetNode.right ? targetNode.right : targetNode.left;
+      if(!parentNode) return this.root =  targetNode.right ? targetNode.right : targetNode.left;
+      return  targetNode = targetNode.right ? targetNode.right : targetNode.left;
     }
 
     //two children
