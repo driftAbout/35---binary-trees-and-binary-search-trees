@@ -1,0 +1,26 @@
+{
+  "name": "lab-koko-kevin",
+  "version": "1.0.0",
+  "description": " lab 34 - Binary Trees and Binary Search Trees",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest --verbose -i"
+  },
+  "keywords": [
+    "binary",
+    "Search",
+    "tree",
+    "node",
+    "jest"
+  ],
+  "author": "Kevin Miller, Koko Kassa",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "jest": "^22.4.2"
+  }
+}
