@@ -85,6 +85,13 @@ class BinarySearchTree{
     return this._nodeWithLargestValue(treeNode.right);
   }
 
+  height(treeNode) {
+    if (!treeNode) return null;
+    let leftHeight = this.height(treeNode.left);
+    let rightHeight = this.height(treeNode.right);
+    return Math.max(leftHeight, rightHeight) +1;
+  }
+
 }
 
 module.exports = BinarySearchTree;
