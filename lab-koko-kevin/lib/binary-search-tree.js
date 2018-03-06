@@ -88,17 +88,19 @@ class BinarySearchTree{
     if (!this.root) return true;
     this.rightHeight = 0;
     this.leftHeight = 0;
-    return this._isBalanced(this.root);
+    this.balanced = true;
+    this._isBalanced(this.root);
+    return this.balanced;
   }
 
   _isBalanced(treeNode){
-    if (!treeNode) return true;
+    if (!treeNode) return;
     this._isBalanced(treeNode.left);
     this._isBalanced(treeNode.right);
+    if(!this.balanced) return;
     if(treeNode.right) this.rightHeight++;
     if (treeNode.left) this.leftHeight++;
-    if (this.rightHeight - this.leftHeight > 1) return false;
-    return true;
+    if ((Math.abs(this.rightHeight - this.leftHeight)) > 1) return  this.balanced = false;
   }
 
 }
