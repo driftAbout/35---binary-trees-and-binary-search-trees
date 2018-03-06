@@ -8,7 +8,6 @@ class TreeNode {
   }
 }
 
-
 class BinarySearchTree{
   constructor(root){
     this.root = root || null;
@@ -83,6 +82,23 @@ class BinarySearchTree{
       if(!treeNode.right.right) return treeNode;
     }
     return this._nodeWithLargestValue(treeNode.right);
+  }
+
+  isBalanced(){
+    if (!this.root) return true;
+    this.rightHeight = 0;
+    this.leftHeight = 0;
+    return this._isBalanced(this.root);
+  }
+
+  _isBalanced(treeNode){
+    if (!treeNode) return true;
+    this._isBalanced(treeNode.left);
+    this._isBalanced(treeNode.right);
+    if(treeNode.right) this.rightHeight++;
+    if (treeNode.left) this.leftHeight++;
+    if (this.rightHeight - this.leftHeight > 1) return false;
+    return true;
   }
 
 }
