@@ -84,29 +84,11 @@ class BinarySearchTree{
     return this._nodeWithLargestValue(treeNode.right);
   }
 
-<<<<<<< HEAD
-  height(treeNode) {
+  isBalanced(treeNode){
     if (!treeNode) return null;
     let leftHeight = this.height(treeNode.left);
     let rightHeight = this.height(treeNode.right);
     return Math.max(leftHeight, rightHeight) +1;
-=======
-  isBalanced(){
-    if (!this.root) return true;
-    this.rightHeight = 0;
-    this.leftHeight = 0;
-    return this._isBalanced(this.root);
-  }
-
-  _isBalanced(treeNode){
-    if (!treeNode) return true;
-    this._isBalanced(treeNode.left);
-    this._isBalanced(treeNode.right);
-    if(treeNode.right) this.rightHeight++;
-    if (treeNode.left) this.leftHeight++;
-    if (this.rightHeight - this.leftHeight > 1) return false;
-    return true;
->>>>>>> 8a0844f702ffbc18608b03153dba12ece1790bf3
   }
 
 }
