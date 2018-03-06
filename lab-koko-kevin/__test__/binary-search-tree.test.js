@@ -28,4 +28,29 @@ describe('binary search tree test', function() {
     expect(true).toBe(true);
   });
 
+  describe('Valid input ', () => {
+    beforeAll(() => {
+      this.balancedTree = new BinarySearchTree();
+      //[11, 16, 3, 23, 12, 8, 6, 9, 7, 5, 2, 1].forEach(val => this.balancedTree.insert(val));
+      [2,3,1].forEach(val => this.balancedTree.insert(val));
+      
+      this.unBalancedTree = new BinarySearchTree();
+      [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 11, 12, 13, 14, 15, 16, 17, 18, 19].forEach(val => this.unBalancedTree.insert(val));
+    });
+
+    it('Should return true for a balanced tree', () => {
+      expect(this.balancedTree.isBalanced()).toBe(true);
+    });
+
+    it('Should return false for a unbalanced tree', () => {
+      expect(this.unBalancedTree.isBalanced()).toBe(false);
+    });
+
+    it('Should return true for tree with not branches', () => {
+      let tree = new BinarySearchTree();
+      tree.insert(3);
+      expect(tree.isBalanced()).toBe(true);
+    });
+  });
+
 });
