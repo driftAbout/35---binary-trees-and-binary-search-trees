@@ -13,16 +13,26 @@ class BinarySearchTree{
     this.root = root || null;
   }
 
-  insert(val){
-    if (!this.root) return this.root = new TreeNode(val);
-    return this._insert(val, this.root);
+  insert(nodeToInsert){
+    if(!this.root) 
+      this.root = nodeToInsert;
+    else
+      this._insert(this.root, nodeToInsert);
   }
-
-  _insert(val, treeNode){
-    if (val === treeNode.value) return null;
-    let direction = val < treeNode.value ? 'left' :  'right';
-    if(!treeNode[direction]) return treeNode[direction] = new TreeNode(val);
-    this._insert(val, treeNode[direction]);    
+  _insert(root, nodeToInsert){
+    if(nodeToInsert.value < root.value){
+      //going left
+      if(!root.left)
+        root.left = nodeToInsert;
+      else
+        this._insert(root.left, nodeToInsert);
+    } else {
+      //going right
+      if(!root.right)
+        root.right = nodeToInsert;
+      else
+        this._insert(root.right, nodeToInsert);
+    }
   }
 
   find(val){
@@ -85,25 +95,24 @@ class BinarySearchTree{
   }
 
   isBalanced(){
-    if (!this.root) return true;
-    this.rightHeight = 0;
-    this.leftHeight = 0;
-    this.balanced = true;
-    this._isBalanced(this.root);
-    return this.balanced;
+    return this._isBalanced(this.root);
   }
-
-  _isBalanced(treeNode){
-    if (!treeNode) return;
-    this._isBalanced(treeNode.left);
-    this._isBalanced(treeNode.right);
-    if(!this.balanced) return;
-    if(treeNode.right) this.rightHeight++;
-    if (treeNode.left) this.leftHeight++;
-    if ((Math.abs(this.rightHeight - this.leftHeight)) > 1) return  this.balanced = false;
+  _height(treeNode) {
+    if (!treeNode) return 0;
+    return 1 + Math.max(this._height(treeNode.left), this._height(treeNode.right));
   }
-
+  _isBalanced(root) {
+    if (!root) return true;
+    let leftHeight = this._height(root.left);
+    let rightHeight = this._height(root.right);
+    if (Math.abs(leftHeight - rightHeight) <= 1
+        && this._isBalanced(root.left)
+        && this._isBalanced(root.right)) 
+      return true;
+    return false;
+  }
 }
+
 
 module.exports = BinarySearchTree;
 
