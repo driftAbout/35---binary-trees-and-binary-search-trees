@@ -10,9 +10,7 @@ class TreeNode {
   }
 }
 
-
 describe('binary tree test', function() {
-
   let one = new TreeNode(1);
   let two = new TreeNode(2);
   let three = new TreeNode(3);
@@ -38,15 +36,19 @@ describe('binary tree test', function() {
   eight.left = seven;
   seven.right = nine;
 
-  console.log(JSON.stringify(binaryTree));
-  console.log('In Order', JSON.stringify(binaryTree.inOrderTraversal()));
-  console.log('Pre Order', JSON.stringify(binaryTree.preOrderTraversal()));
-  console.log('Post Order', JSON.stringify(binaryTree.postOrderTraversal()));
-
-  binaryTree.inOrderTraversal();
-
-  it('Should be true', () => {
-    expect(true).toBe(true);
+  describe('In Order Traveral', () => {
+    it('Should be true', () => {
+      expect(JSON.stringify(binaryTree.inOrderTraversal())).toEqual('[2,6,7,9,8,1,4,3,5]');
+    });
   });
-
+  describe('Pre Order Traveral', () => {
+    it('Should be true', () => {
+      expect(JSON.stringify(binaryTree.preOrderTraversal())).toEqual('[1,2,6,8,7,9,3,4,5]');
+    });
+  });
+  describe('Post Order Traveral', () => {
+    it('Should be true', () => {
+      expect(JSON.stringify(binaryTree.preOrderTraversal())).toEqual('[1,2,6,8,7,9,3,4,5]');
+    });
+  });
 });
