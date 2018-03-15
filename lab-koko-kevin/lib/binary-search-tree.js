@@ -13,11 +13,11 @@ class BinarySearchTree{
     this.root = root || null;
   }
 
-  insert(nodeToInsert){
+  insert(nodeToInsert){  // O(logn)
     if(!this.root) 
       this.root = nodeToInsert;
     else
-      this._insert(this.root, nodeToInsert);
+      this._insert(this.root, nodeToInsert); 
   }
   _insert(root, nodeToInsert){
     if(nodeToInsert.value < root.value){
@@ -35,7 +35,7 @@ class BinarySearchTree{
     }
   }
 
-  find(val){
+  find(val){ // O(logn)
     if (!this.root) return null;
     return this._find(val, this.root);
   }
@@ -47,7 +47,7 @@ class BinarySearchTree{
     return this._find(val, treeNode[direction]);
   }
 
-  remove(val){
+  remove(val){ //O(logn)
     if (!this.root) return null;
     //remove root
     if (this.root.value === val) return this._remove(val, null, null);
@@ -66,19 +66,19 @@ class BinarySearchTree{
     let targetNode = parentNode ? parentNode[direction] : this.root;
 
     //no childern
-    if (!targetNode.left && !targetNode.right) {
+    if (!targetNode.left && !targetNode.right) { //O(1)
       if(!parentNode) return this.root = null;
       return parentNode[direction] = null;
     }
 
     //one child
-    if (!targetNode.left || !targetNode.right){
+    if (!targetNode.left || !targetNode.right){ //O(1)
       if(!parentNode) return this.root =  targetNode.right ? targetNode.right : targetNode.left;
       return  parentNode[direction]  = targetNode.right ? targetNode.right : targetNode.left;
     }
 
     //two children
-    return this._removeNodeWithTwoChildren(targetNode);
+    return this._removeNodeWithTwoChildren(targetNode); //0(n) n being length of children
   }
 
   _removeNodeWithTwoChildren(treeNode){
@@ -94,8 +94,8 @@ class BinarySearchTree{
     return this._nodeWithLargestValue(treeNode.right);
   }
 
-  isBalanced(){
-    return this._isBalanced(this.root);
+  isBalanced(){ // 0(n)
+    return this._isBalanced(this.root); 
   }
   _height(treeNode) {
     if (!treeNode) return 0;

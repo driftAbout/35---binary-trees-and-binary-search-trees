@@ -14,7 +14,7 @@ class BinaryTree{
     this.root = root || new TreeNode();
   }
 
-  inOrderTraversal(){
+  inOrderTraversal(){ // 0(n)
     if(!this.root) return null;
     this.orderedValues = []; 
     this._inOrderTraversal(this.root);
@@ -28,7 +28,7 @@ class BinaryTree{
     this._inOrderTraversal(treeNode.right);
   }
 
-  preOrderTraversal(){
+  preOrderTraversal(){ // 0(n)
     if(!this.root) return null;
     this.preOrderedValues = [];
     this._preOrderTraversal(this.root);
@@ -42,7 +42,7 @@ class BinaryTree{
     this._preOrderTraversal(treeNode.right);
   }
 
-  postOrderTraversal(){
+  postOrderTraversal(){ // 0(n)
     if(!this.root) return null;
     this.postOrderValues = [];
     this._postOrderTraversal(this.root);
